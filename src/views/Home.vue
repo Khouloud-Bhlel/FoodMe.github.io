@@ -83,7 +83,7 @@ export default {
 <style lang="css">
 .home, .home-container {
     min-height: 100vh !important;
-    background-image: url("../assets/img/bg.png");    
+    /* background-image: url("../assets/img/bg.png");     */
     background-position: center;
     background-size: cover;
     /* background-color: #1979B3; */

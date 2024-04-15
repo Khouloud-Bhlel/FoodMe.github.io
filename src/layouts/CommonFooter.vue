@@ -1,210 +1,262 @@
+<template>
+  <div class="footer" :style="{ backgroundColor: backgroundColorContact }">
+      <div class="news-letter">
+          <h3 :style="{ color: ColorContactitel }">Receive event notifications</h3>
+          <form onsubmit="event.preventDefault();">
+              <input type="email" name="useremailreceiveinfo" placeholder="enter your email"
+                  id="useremailreceiveinfo">
+              <input type="submit" value="subscribe">
+          </form>
+      </div>
 
-<template  >
-<!-- Footer -->
-<footer class="footer text-white" id="contact">
-  <!-- Grid container -->
-  <div class="container footer-padding border-divider">
+      <div class="box-container">
 
-    <!-- Section: Links -->
-    <section class="">
-      <!--Grid row-->
-      <b-row>
-        <!--Grid column-->
-        <b-col col lg="5" md="5" sm="12" cols="12">
-          <div>
-            <h1 class="title">Contact Us</h1>
-            <p class="p-white-footer text-left">
-              Intested to hear more and find out if product is right for you?<br>
-              Email us: contact.team@dracoss.tn
-            </p>  
-            <p class="p-white-footer text-left">Our localisation:<br> Rue de l'Euro, Imm Selim Building "SLIM, 1053 </p>
-            <p class="p-white-footer text-left">Our social media:
-              <br>
-                <!-- Instagram -->
-              <b-button class="social-media">
-                <a href="https://www.instagram.com/dracoss_tn/" target="_blank" rel="noopener">
-                  <b-icon icon="instagram" style="color: #fff;" font-scale="0.9"></b-icon>
-                </a>
-              </b-button> 
-              <!-- Linked In -->
-              <b-button class="social-media">
-                <a href="https://www.linkedin.com/company/dracoss/?viewAsMember=true" target="_blank" rel="noopener">
-                  <b-icon icon="linkedin" style="color: #fff;" font-scale="0.9"></b-icon> 
-                </a>
-              </b-button>   
-              <!-- Facebook -->
-              <b-button class="social-media">
-                <a href="https://www.facebook.com/99Drac" target="_blank" rel="noopener">
-                  <b-icon icon="facebook" style="color: #fff;" font-scale="0.9"></b-icon> 
-                </a>
-              </b-button> 
-            </p>
-            
-            
+          <div class="box">
+              <h3 :style="{ color: ColorContactitel }">our {{ menuTitle }}</h3>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/menu"><i class="fas fa-arrow-right"></i> taco</router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/menu"><i class="fas fa-arrow-right"></i> burrito</router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/menu"><i class="fas fa-arrow-right"></i> nachos</router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/menu"><i class="fas fa-arrow-right"></i> side food
+              </router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/menu"><i class="fas fa-arrow-right"></i> dessert</router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/menu"><i class="fas fa-arrow-right"></i> drink</router-link>
           </div>
-        </b-col>
-        <!--Grid column--> 
 
-        <b-col col offset-lg="1" offset-md="1" lg="1" md="1" class="responsive-display">
-          <span class="vertical-line"></span>
-        </b-col>  
+          <div class="box">
+              <h3 :style="{ color: ColorContactitel }">quick links</h3>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/logo-page"> <i class="fas fa-arrow-right"></i> Home</router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/aboutus"> <i class="fas fa-arrow-right"></i> {{ aboutTitle }}</router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/ourfranchisees"> <i class="fas fa-arrow-right"></i> {{ ourFranchisesTitle }}
+              </router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/menu"> <i class="fas fa-arrow-right"></i> {{ menuTitle }}</router-link>
+              <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/becomeafranchisee"> <i class="fas fa-arrow-right"></i> {{ becomeFranchiseeTitle }}
+              </router-link>
+          </div>
 
-        <!--Grid column-->
-        <b-col col offset-lg="1" offset-md="1" lg="4" md="4" sm="12" cols="12" class="pb-15">
+          <div class="box">
+              <h3 :style="{ color: ColorContactitel }">extra links</h3>
+              <div v-if="user">
+                  <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/cart"> <i class="fas fa-arrow-right"></i> my order
+                  </router-link>
+                  <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/myorder"> <i class="fas fa-arrow-right"></i> my orders
+                  </router-link>
+              </div>
+              <div v-else>
+                  <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/login"> <i class="fas fa-arrow-right"></i> login
+                  </router-link>
+                  <router-link :style="{ color: ColorContac }" @click="scrollToTop()" to="/register"> <i class="fas fa-arrow-right"></i> register
+                  </router-link>
+              </div>
+          </div>
 
-            <b-form-group label="Your name :" label-for="name">
-              <b-form-input id="name" v-model="form.name" class="input" required placeholder="Name"></b-form-input>
-            </b-form-group>
+          <div class="box">
+              <h3 :style="{ color: ColorContactitel }">{{FooterContactTitre}}</h3>
+              <p :style="{ color: ColorContac }" >{{FooterContactP}}</p>
+              <p :style="{ color: ColorContac }">Location : {{FooterContactLocation}}</p>
+              <p :style="{ color: ColorContac }">Call : {{FooterContactCall}}</p>
+              <p :style="{ color: ColorContac }">Email : {{FooterContactEmail}}</p>
+          </div>
 
-            <b-form-group label="Your mail address :" label-for="mail">
-              <b-form-input id="mail" v-model="form.email" type="email" class="input" required placeholder="Email"></b-form-input>
-            </b-form-group>
+      </div>
 
-            <b-form-group label="Your message :" label-for="message">
-              <b-form-textarea id="message" v-model="form.message" class="input" placeholder="Message"></b-form-textarea>
-            </b-form-group>
+      <div class="bottom">
 
-            <b-col  lg="12" md="12" sm="12" cols="12" class="text-right pr-0">
-              <b-button pill type="submit" @click="sendMessage()"  @keyup.enter="sendMessage()" class="form-btn">&nbsp; &nbsp; Submit &nbsp; <b-icon icon="chevron-right" aria-hidden="true"></b-icon></b-button>
-            </b-col>
-            
-        </b-col>
-         <b-col class="text-right btn-to-top" col lg="12" md="12" sm="12" cols="12" >
-          <button @click="scrollToTop()">
-           <b-icon icon="arrow-up" font-scale="1"></b-icon> 
-        </button>
-        </b-col>
-       
-        <!--Grid column-->
-        <b-col class="text-center mt-25 pt-25" col lg="12" md="12" sm="12" cols="12" >
-          <p>© All Right Reserved. This website is made by TuniAOS</p>
-        </b-col>
-      </b-row>
-      <!--Grid row-->
-    </section>
-    <!-- Section: Links -->
+          <div class="share">
+              <a href="#" class="fab fa-facebook-f"></a>
+              <a href="#" class="fab fa-twitter"></a>
+              <a href="#" class="fab fa-instagram"></a>
+              <a href="#" class="fab fa-pinterest"></a>
+          </div>
+
+      </div>
+
   </div>
-  <!-- Grid container -->
-</footer>
-<!-- Footer -->
 </template>
+
 <script>
-import axios from "axios";
-  export default {
-    data() {
-      return {
-        form: {
-          email: '',
-          name: '',
-          message: '',
-        },
-        show: true
-      }
+import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
+
+export default {
+  name: 'ComponentFooter',
+
+  computed: {
+      ...mapState(['user']),
+      ...mapGetters(['getFormData']),
+      aboutTitle() {
+      return this.getFormData ? this.getFormData.aboutTitle : '';
     },
-    methods: {
-       scrollToTop() {
-          window.scrollTo(0,0);
-        },
-      sendMessage() {
-        console.log(JSON.stringify(this.form));
-        axios
-        .post(
-          "https://dracoss-backend.onrender.com/api/contacts",this.form
-        )
-        .then((response) => {
-          console.log(response);
-          this.form.email=""
-          this.form.name=""
-          this.form.message=""
-           this.$toast.open({
-            message: "Message sent",
-            type: "success",
-            duration: 7000
-          });
-        })
-        .catch((error) => {
-          this.errorMessage = error.message;
-          this.$toast.open({
-            message: "Error during sending",
-            type: "error",
-            duration: 7000
-          });
-        });
-      },
+    menuTitle() {
+      return this.getFormData ? this.getFormData.menuTitle : '';
+    },
+    ourFranchisesTitle() {
+      return this.getFormData ? this.getFormData.ourFranchisesTitle : '';
+    },
+    becomeFranchiseeTitle() {
+      return this.getFormData ? this.getFormData.becomeFranchiseeTitle : '';
+    },
+
+
+
+    FooterContactTitre() {
+      return this.getFormData ? this.getFormData.FooterContactTitre : '';
+    },
+    FooterContactLocation() {
+      return this.getFormData ? this.getFormData.FooterContactLocation : '';
+    },
+    FooterContactCall() {
+      return this.getFormData ? this.getFormData.FooterContactCall : '';
+    },
+    FooterContactTitre() {
+      return this.getFormData ? this.getFormData.FooterContactTitre : '';
+    },
+    FooterContactP() {
+      return this.getFormData ? this.getFormData.FooterContactP : '';
+    },
+    FooterContactEmail() {
+      return this.getFormData ? this.getFormData.FooterContactEmail : '';
+    },
+    backgroundColorContact() {
+      return this.getFormData ? this.getFormData.backgroundColorContact : '';
+    },
+    ColorContac() {
+      return this.getFormData ? this.getFormData.ColorContac : '';
+    },
+    ColorContactitel() {
+      return this.getFormData ? this.getFormData.ColorContactitel : '';
     }
+  },
+  created() {
+    this.$store.dispatch('fetchData')
+      .catch(error => {
+        console.error('Error dispatching fetchData:', error);
+      });
+  },
+  methods: {
+      scrollToTop() {
+          window.scrollTo(0, 0);
+      }
   }
+}
 </script>
-<style lang="css">
+
+<style scoped>
+/* footer */
 .footer {
-  position: relative;
-  bottom: 0 !important;
-  width: 100% !important;
-  background-color: #022831 !important;
-}
-.container {
-  max-width: 100% !important;
-}
-.border-divider{
- border-bottom: 0.075rem solid #e9e9e9!important;
-}
-.p-white-footer{
-  font-size: 1rem;
-  color: #fff;
-}
-.title {
-  font-size: 50px;
-  font-family: Roboto;
-  font-weight: 500;
-}
-.social-media {
-  padding: 0.375rem 0.85rem;
-  margin-top: 5px;
-  margin-right: 10px;
-  border-radius: 50% !important;
-  background-color: #1979B3 !important;
-  border-color: #1979B3 !important; 
-  /* width: 38px; 
-  height: 38px; */
-  padding-bottom: 10px !important; 
-   /* bottom: 10px !important; */
-  /*justify-content: center; */
-  /* position: absolute; */
-}
-.vertical-line {
-  border-left: 3px solid #fff;
-  display: inline-block;
-  height: 300px;
-}
-.input {
-  background-color: transparent !important;
-  border-radius: 20px !important;
-  border: solid 2px white !important;
-  color: white !important;
-  margin-top: -10px !important;
-}
-.form-btn {
-  background-color: transparent !important;
-  border: solid 2px white !important;
-}
-.btn-to-top button{
-  position: absolute;
-  top: 38px;
-  right: -140px;
-  border-radius: 50% !important;
-  background-color: #1979B3 !important;
-  border: 1px solid transparent;
-  padding: 0.450rem 0.75rem;
-  font-size: 0.9rem;
-}
-@media only screen and (max-width: 445px) {
-  .btn-to-top{
-    display:none!important
-  }
+  background: #f7f7f7;
+  padding: 2rem 9%;
 }
 
-@media all and (max-device-width: 640px) {
-  .vertical-line {
-    display: none;
+.footer .news-letter {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.footer .news-letter h3 {
+  font-size: 2.5rem;
+  color: #2951a2;
+  padding-bottom: 1rem;
+}
+
+.footer .news-letter form {
+  max-width: 70rem;
+  margin: 1rem auto;
+  max-width: 70rem;
+
+  display: flex;
+  border-radius: .5rem;
+  overflow: hidden;
+}
+
+.footer .news-letter form input[type="email"] {
+  height: 100%;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  font-size: 1.6rem;
+  color: #2951a2;
+  text-transform: none;
+}
+
+.footer .news-letter form input[type="submit"] {
+  padding: 0 2rem;
+  font-size: 1.6rem;
+  color: #fff;
+  background: #120381;
+  cursor: pointer;
+}
+
+.footer .news-letter form input[type="submit"]:hover {
+  background: #2951a2;
+}
+
+.footer .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem;
+}
+
+.footer .box-container .box h3 {
+  font-size: 2.2rem;
+  color: #2951a2;
+  padding: 1rem 0;
+}
+
+.footer .box-container .box p {
+  font-size: 1.4rem;
+  color: #666;
+  padding: 1rem 0;
+}
+
+.footer .box-container .box a {
+  display: block;
+  font-size: 1.4rem;
+  color: #666;
+  padding: 1rem 0;
+}
+
+.footer .box-container .box a:hover {
+  color: #120381;
+}
+
+.footer .box-container .box a:hover i {
+  padding-right: 2rem;
+}
+
+.footer .box-container .box a i {
+  padding-right: .5rem;
+  color: #120381;
+}
+
+.footer .bottom {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.footer .bottom .share {
+  margin: 1.5rem 0;
+}
+
+.footer .bottom .share a {
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  font-size: 2rem;
+  border-radius: .5rem;
+  margin: 0 .3rem;
+  color: #fff;
+  background: #120381;
+}
+
+.footer .bottom .share a:hover {
+  background: #2951a2;
+}
+
+@media (max-width: 576px) {
+  .footer .box-container {
+
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+
   }
+
 }
 </style>

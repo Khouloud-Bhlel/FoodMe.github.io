@@ -1,74 +1,78 @@
 <template>
-    <div class="page">
-      <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-      </div>
-      <form @submit.prevent="loginUser">
-        <h3>Login Here</h3>
-  
-        <label for="email">Email</label>
-        <input type="text" placeholder="email" v-model="form.email" id="email">
-  
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" v-model="form.password" id="password">
-  
-        <button type="submit">Log In</button>
-        <div class="social">
-          <div class="go"><i class="fab fa-google"></i> Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
-        </div>
-      </form>
+  <div class="page">
+    <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
     </div>
-  </template>
-  
-  <script>
-  import { ref } from 'vue';
-  import axios from 'axios';
-  import  store from '../store';
-  import router from '../router';
+    <form @submit.prevent="loginUser">
+      <h3>Login Here</h3>
 
-  export default {
-    setup() {
-      const form = ref({
+      <label for="email">Email</label>
+      <input type="text" placeholder="email" v-model="form.email" id="email">
+
+      <label for="password">Password</label>
+      <input type="password" placeholder="Password" v-model="form.password" id="password">
+      <button type="submit">Log In</button>
+      <label><router-link to="/forgot-password" >Forgot Password?</router-link></label>
+      <div class="social">
+        <div class="go"><i class="fab fa-google"></i> Google</div>
+        <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
+      </div>
+    </form>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+import store from '../store'; // Assuming the store is located in the '@/store' directory
+import router from '../router';
+
+export default {
+  data() {
+    return {
+      form: {
         email: '',
         password: ''
-      });
-  
-      const loginUser = async () => {
-        try {
-          if (!form.value.email || !form.value.password) {
-            console.error('Email and password are required.');
-            return;
-          }
-  
-          const response = await axios.post('http://localhost:9000/api/login', {
-            email: form.value.email,
-            password: form.value.password
-          });
-  
-          if (response.data.user && response.data.token) {
-            const user = response.data.user; 
-            //console.log('Logged in user:', user);
-  
-             await store.commit('setUser', user);
-  
-             router.push('/');
-          } else {
-            console.error('Login failed: No user data returned');
-          }
-        } catch (error) {
-          console.error('Login error:', error);
+      }
+    };
+  },
+  methods: {
+    async loginUser() {
+      try {
+        if (!this.form.email || !this.form.password) {
+          console.error('Email and password are required.');
+          return;
         }
-      };
-  
-      return {
-        form,
-        loginUser
-      };
+
+        const response = await axios.post('http://localhost:9000/api/login', {
+          email: this.form.email,
+          password: this.form.password
+        });
+
+        if (response.data.user && response.data.token) {
+          const user = response.data.user;
+          const authToken = response.data.token;
+          
+          await store.dispatch('authenticateUser');
+          // Save user data to local storage
+          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('authToken', authToken);
+
+          // Redirect to home page after successful login
+          router.push('/');
+        } else {
+          console.error('Login failed: No user data returned');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+      }
     }
-  };
-  </script>
+  }
+};
+</script>
+
+
+
   
   
   <style scoped>
@@ -116,8 +120,8 @@
   }
   
   form {
-    height: 520px;
-    width: 400px;
+    height: 560px;
+    width: 350px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
     transform: translate(-50%, -50%);
@@ -185,6 +189,7 @@ input:focus {
     border-radius: 5px;
     cursor: pointer;
   }
+
   
   .social {
     margin-top: 30px;
@@ -200,6 +205,7 @@ input:focus {
     color: #120381;
     text-align: center;
     border: 1px solid #ccc;
+    
   }
   
   .social div:hover {
@@ -208,10 +214,16 @@ input:focus {
   
   .social .fb {
     margin-left: 25px;
+    font-size: 180%;
+  }
+  .social .go {
+    margin-left: 25px;
+    font-size: 180%;
   }
   
   .social i {
     margin-right: 4px;
+    
   }
   </style>
   

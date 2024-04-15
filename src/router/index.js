@@ -4,14 +4,21 @@ import Layout from "../views/Layout.vue";
 import Home from "../views/Home.vue";
 import AboutUs from "../views/AboutUs.vue";
 import NotFound from "../views/NotFound.vue";
-import Login from "../views/Login.vue";
-import LogoPage from "../views/LogoPage.vue";
 import Menu from "../views/Menu.vue";
 import Gallery from "../views/Gallery.vue";
 import OurFranchisees from "../views/OurFranchisees.vue";
 import BecomeaFranchisee from "../views/BecomeaFranchisee.vue";
 import Contact from "../views/contact.vue";
-
+import Cart from "../views/Cart.vue";
+import Profile from "../views/Profile.vue";
+import Confirmsuccess from '../views/Confirmsuccess.vue';
+import Login from "../views/Login.vue";
+import Register from "../views/Register.vue";
+import Confirm from '../views/authentication/verification/Confirm.vue';
+import verifyEmail from '../views/authentication/verification/verifyEmail.vue';
+import ResetPassword from '../views/authentication/verification/resetPassword.vue';
+import Forgotpassword from '../views/authentication/verification/forgotPassword.vue'
+import ResetPasswordSuccess from '../views/authentication/verification/resetPasswordSuccess.vue'
 
 Vue.use(VueRouter);
 
@@ -21,6 +28,175 @@ const routes = [
     name: "Login",
     component: Login,
   },
+  {
+    path: "/AboutUs",
+    name: "AboutUs",
+    component: AboutUs,
+    meta: {
+      pageTitle: 'AboutUs Page',
+      breadcrumb: [
+        {
+          text: 'AboutUs Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/menu",
+    name: "Menu",
+    component: Menu,
+    meta: {
+      pageTitle: 'Menu Page',
+      breadcrumb: [
+        {
+          text: 'Menu Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/gallery",
+    name: "Gallery",
+    component: Gallery,
+    meta: {
+      pageTitle: 'Gallery Page',
+      breadcrumb: [
+        {
+          text: 'Gallery Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/ourfranchisees",
+    name: "OurFranchisees",
+    component: OurFranchisees,
+    meta: {
+      pageTitle: 'OurFranchisees Page',
+      breadcrumb: [
+        {
+          text: 'OurFranchisees Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/becomeafranchisee",
+    name: "BecomeaFranchisee",
+    component: BecomeaFranchisee,
+    meta: {
+      pageTitle: 'BecomeaFranchisee Page',
+      breadcrumb: [
+        {
+          text: 'BecomeaFranchisee Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: Contact,
+    meta: {
+      pageTitle: 'Contact Page',
+      breadcrumb: [
+        {
+          text: 'Contact Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/cart",
+    name: "Cart",
+    component: Cart,
+    meta: {
+      pageTitle: 'Contact Page',
+      breadcrumb: [
+        {
+          text: 'Contact Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
+    meta: {
+      pageTitle: 'Profile Page',
+      breadcrumb: [
+        {
+          text: 'Profile Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
+    meta: {
+      pageTitle: 'Register Page',
+      breadcrumb: [
+        {
+          text: 'Register Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: '/confirm',
+    name: 'confirm',
+    component: Confirm,
+    props: (route) => ({ token: route.query.token }) // Pass the token as a prop
+  },
+  {
+    path: '/confirmsuccess',
+    name: 'confirmsuccess',
+    component: Confirmsuccess,
+  },
+  {
+    path: '/confirm/:token', // Dynamic route with token parameter
+    name: 'confirmWithToken',
+    component: Confirm,
+    props: true // Pass the token as a prop directly from the URL
+  },
+  {
+    path: '/verify-email',
+    name: 'verifyEmail',
+    component: verifyEmail,
+    props: route => ({ email: route.query.email }),
+  },
+  {
+    path: '/resetPassword',
+    name: 'ResetPassword',
+    component: ResetPassword,
+    props: route => ({
+      email: route.query.email,
+      token: route.query.token
+    })
+  },
+  {
+    path: '/forgot-password',
+    name: 'forgotpassword',
+    component: Forgotpassword,
+  },
+  {
+    path: '/resetPasswordSuccess',
+    name: 'resetPasswordSuccess',
+    component: ResetPasswordSuccess,
+  },
+  
   {
     path: "/",
     component: Layout,
@@ -39,108 +215,8 @@ const routes = [
           ],
         },
       },
-      
-      {
-        path: "/logo-page",
-        name: "LogoPage",
-        component: LogoPage,
-        meta: {
-          pageTitle: 'LogoPage Page',
-          breadcrumb: [
-            {
-              text: 'LogoPage Page',
-              active: true,
-            },
-          ],
-        },
-      },
-      {
-        path: "/aboutus",
-        name: "AboutUs",
-        component: AboutUs,
-        meta: {
-          pageTitle: 'AboutUs Page',
-          breadcrumb: [
-            {
-              text: 'AboutUs Page',
-              active: true,
-            },
-          ],
-        },
-      },
-      
-      {
-        path: "/menu",
-        name: "Menu",
-        component: Menu,
-        meta: {
-          pageTitle: 'Menu Page',
-          breadcrumb: [
-            {
-              text: 'Menu Page',
-              active: true,
-            },
-          ],
-        },
-      },
-      {
-        path: "/gallery",
-        name: "Gallery",
-        component: Gallery,
-        meta: {
-          pageTitle: 'Gallery Page',
-          breadcrumb: [
-            {
-              text: 'Gallery Page',
-              active: true,
-            },
-          ],
-        },
-      },
-      {
-        path: "/ourfranchisees",
-        name: "OurFranchisees",
-        component: OurFranchisees,
-        meta: {
-          pageTitle: 'OurFranchisees Page',
-          breadcrumb: [
-            {
-              text: 'OurFranchisees Page',
-              active: true,
-            },
-          ],
-        },
-      },
-      {
-        path: "/becomeafranchisee",
-        name: "BecomeaFranchisee",
-        component: BecomeaFranchisee,
-        meta: {
-          pageTitle: 'BecomeaFranchisee Page',
-          breadcrumb: [
-            {
-              text: 'BecomeaFranchisee Page',
-              active: true,
-            },
-          ],
-        },
-      },
-      {
-        path: "/contact",
-        name: "Contact",
-        component: Contact,
-        meta: {
-          pageTitle: 'Contact Page',
-          breadcrumb: [
-            {
-              text: 'Contact Page',
-              active: true,
-            },
-          ],
-        },
-      },
-    ]
-  },
+    ],},
+    
   {
     path: "*", // fallback route if no route is matched
     component: NotFound

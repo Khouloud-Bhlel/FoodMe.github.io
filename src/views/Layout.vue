@@ -1,19 +1,19 @@
 <template lang="html">
   <div class="layout">
-    <CommonNavbar v-if="currentRouteName"></CommonNavbar>
-    <router-view />
-    <CommonFooter v-if="currentRouteName"></CommonFooter>
+    <!-- <CommonNavbar v-if="currentRouteName"></CommonNavbar> -->
+    <!-- <router-view /> -->
+    <!-- <CommonFooter v-if="currentRouteName"></CommonFooter> -->
   </div>
 </template>
 <script>
-import CommonNavbar from "../layouts/CommonNavbar.vue";
-import CommonFooter from "../layouts/CommonFooter.vue";
+// import CommonNavbar from "../layouts/CommonNavbar.vue";
+// import CommonFooter from "../layouts/CommonFooter.vue";
 
 export default {
   name: "Layout",
   components: {
-    CommonNavbar,
-    CommonFooter,
+    // CommonNavbar,
+    // CommonFooter,
   },
      data() {
       return {

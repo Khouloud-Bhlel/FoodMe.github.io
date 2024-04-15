@@ -44,6 +44,7 @@ export default {
     },
  },
  created() {
+  console.log('created', this.$store)
     this.$store.dispatch('fetchData')
       .catch(error => {
         console.error('Error dispatching fetchData:', error);
