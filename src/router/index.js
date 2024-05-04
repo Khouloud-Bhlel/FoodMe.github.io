@@ -2,23 +2,27 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Layout from "../views/Layout.vue";
 import Home from "../views/Home.vue";
-import AboutUs from "../views/AboutUs.vue";
+import AboutUs from "../views/AboutPage/AboutUs.vue";
 import NotFound from "../views/NotFound.vue";
 import Menu from "../views/Menu.vue";
-import Gallery from "../views/Gallery.vue";
-import OurFranchisees from "../views/OurFranchisees.vue";
-import BecomeaFranchisee from "../views/BecomeaFranchisee.vue";
-import Contact from "../views/contact.vue";
+import Gallery from "../views/GalleryPage/Gallery.vue";
+import BecomeaLivreur from "../views/BecomeaLivreurPage/BecomeaLivreur.vue";
+import Contact from "../views/ContactPage/Contact.vue";
 import Cart from "../views/Cart.vue";
 import Profile from "../views/Profile.vue";
-import Confirmsuccess from '../views/Confirmsuccess.vue';
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
-import Confirm from '../views/authentication/verification/Confirm.vue';
-import verifyEmail from '../views/authentication/verification/verifyEmail.vue';
-import ResetPassword from '../views/authentication/verification/resetPassword.vue';
-import Forgotpassword from '../views/authentication/verification/forgotPassword.vue'
-import ResetPasswordSuccess from '../views/authentication/verification/resetPasswordSuccess.vue'
+import Confirm from '../views/authenticationPages/verificationPages/Confirm.vue';
+import verifyEmail from '../views/authenticationPages/verificationPages/verifyEmail.vue';
+import ResetPassword from '../views/authenticationPages/verificationPages/resetPassword.vue';
+import Forgotpassword from '../views/authenticationPages/verificationPages/forgotPassword.vue';
+import ResetPasswordSuccess from '../views/authenticationPages/verificationPages/resetPasswordSuccess.vue';
+import Reservations from '../views/ReservationPage/reservations.vue';
+import AllMenu from "../views/AllMenu.vue"  ;
+import DiscountMenu from "../views/DiscountMenu.vue" ;
+import Confirmation from "../views/Confirmation.vue" ;
+import Myorder from "../views/Myorder.vue" ;
+import Acceuil from "../views/Acceuil.vue" ;
 
 Vue.use(VueRouter);
 
@@ -43,6 +47,20 @@ const routes = [
     },
   },
   {
+    path: "/acceuil",
+    name: "Acceuil",
+    component: Acceuil,
+    meta: {
+      pageTitle: 'Acceuil Page',
+      breadcrumb: [
+        {
+          text: 'Acceuil Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
     path: "/menu",
     name: "Menu",
     component: Menu,
@@ -56,6 +74,22 @@ const routes = [
       ],
     },
   },
+  
+  {
+    path: "/confirmation",
+    name: "Confirmation",
+    component: Confirmation,
+    meta: {
+      pageTitle: 'Confirmation Page',
+      breadcrumb: [
+        {
+          text: 'Confirmation Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  
   {
     path: "/gallery",
     name: "Gallery",
@@ -71,28 +105,48 @@ const routes = [
     },
   },
   {
-    path: "/ourfranchisees",
-    name: "OurFranchisees",
-    component: OurFranchisees,
+
+    path: "/reservation",
+    name: "Reservation",
+    component: Reservations,
+  },
+  {
+    path: "/all",
+    name: "AllMenu",
+    component: AllMenu,
     meta: {
-      pageTitle: 'OurFranchisees Page',
+      pageTitle: 'AllMenu Page',
       breadcrumb: [
         {
-          text: 'OurFranchisees Page',
+          text: 'AllMenu Page',
           active: true,
         },
       ],
     },
   },
   {
-    path: "/becomeafranchisee",
-    name: "BecomeaFranchisee",
-    component: BecomeaFranchisee,
+    path: "/discount",
+    name: "DiscountMenu",
+    component: DiscountMenu,
     meta: {
-      pageTitle: 'BecomeaFranchisee Page',
+      pageTitle: 'DiscountMenu Page',
       breadcrumb: [
         {
-          text: 'BecomeaFranchisee Page',
+          text: 'DiscountMenu Page',
+          active: true,
+        },
+      ],
+    },
+  },
+  {
+    path: "/becomeaLivreur",
+    name: "BecomeaLivreur",
+    component: BecomeaLivreur,
+    meta: {
+      pageTitle: 'BecomeaLivreur Page',
+      breadcrumb: [
+        {
+          text: 'BecomeaLivreur Page',
           active: true,
         },
       ],
@@ -135,6 +189,19 @@ const routes = [
       breadcrumb: [
         {
           text: 'Profile Page',
+        },
+      ],
+    },
+  },
+          {
+    path: "/myorder",
+    name: "Myorder",
+    component: Myorder,
+    meta: {
+      pageTitle: 'Myorder Page',
+      breadcrumb: [
+        {
+          text: 'Myorder Page',
           active: true,
         },
       ],
@@ -159,11 +226,6 @@ const routes = [
     name: 'confirm',
     component: Confirm,
     props: (route) => ({ token: route.query.token }) // Pass the token as a prop
-  },
-  {
-    path: '/confirmsuccess',
-    name: 'confirmsuccess',
-    component: Confirmsuccess,
   },
   {
     path: '/confirm/:token', // Dynamic route with token parameter
@@ -199,10 +261,10 @@ const routes = [
   
   {
     path: "/",
-    component: Layout,
-    children: [
-      {
-        path: "",
+    // component: Layout,
+    // children: [
+    //   {
+    //     path: "",
         name: "Home",
         component: Home,
         meta: {
@@ -215,7 +277,7 @@ const routes = [
           ],
         },
       },
-    ],},
+    // ],},
     
   {
     path: "*", // fallback route if no route is matched

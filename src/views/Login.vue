@@ -15,8 +15,8 @@
       <button type="submit">Log In</button>
       <label><router-link to="/forgot-password" >Forgot Password?</router-link></label>
       <div class="social">
-        <div class="go"><i class="fab fa-google"></i> Google</div>
-        <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
+        <div class="go" @click="loginWithGoogle"><i class="fab fa-google"></i> Google</div>
+        <div class="fb" @click="loginWithFacebook"><i class="fab fa-facebook-f faFacebook"></i> Facebook</div>
       </div>
     </form>
   </div>
@@ -24,7 +24,7 @@
 
 <script>
 import axios from 'axios';
-import store from '../store'; // Assuming the store is located in the '@/store' directory
+import store from '../store'; 
 import router from '../router';
 
 export default {
@@ -37,6 +37,30 @@ export default {
     };
   },
   methods: {
+    async loginWithGoogle() {
+      try {
+        const response = await axios.get('http://localhost:9000/auth/google');
+        if (response.data.redirectUrl) {
+          window.location.href = response.data.redirectUrl;
+        } else {
+          console.error('Failed to initiate Google login');
+        }
+      } catch (error) {
+        console.error('Google login error:', error);
+      }
+    },
+    async loginWithFacebook() {
+      try {
+        const response = await axios.get('http://localhost:9000/auth/facebook');
+        if (response.data.redirectUrl) {
+          window.location.href = response.data.redirectUrl;
+        } else {
+          console.error('Failed to initiate Facebook login');
+        }
+      } catch (error) {
+        console.error('Facebook login error:', error);
+      }
+    },
     async loginUser() {
       try {
         if (!this.form.email || !this.form.password) {
@@ -70,12 +94,8 @@ export default {
   }
 };
 </script>
-
-
-
-  
-  
   <style scoped>
+  @import "../assets/css/style.css";
   *,
   *:before,
   *:after {
@@ -167,12 +187,12 @@ export default {
   margin-top: 8px;
   font-size: 14px;
   font-weight: 300;
-  border: 1px solid #ccc; /* Set default border color to gray */
-  transition: border-color 0.3s ease-in-out; /* Add transition for smooth effect */
+  border: 1px solid #ccc; 
+  transition: border-color 0.3s ease-in-out; 
 }
 
 input:focus {
-  border-color: #23a2f6; /* Change border color on focus */
+  border-color: #23a2f6; 
 }
 
 ::placeholder {
@@ -192,11 +212,12 @@ input:focus {
 
   
   .social {
-    margin-top: 30px;
     display: flex;
+    justify-content: center; 
   }
   
   .social div {
+    display: block;
     background: red;
     width: 150px;
     border-radius: 3px ;
@@ -205,7 +226,6 @@ input:focus {
     color: #120381;
     text-align: center;
     border: 1px solid #ccc;
-    
   }
   
   .social div:hover {
@@ -213,12 +233,12 @@ input:focus {
   }
   
   .social .fb {
-    margin-left: 25px;
-    font-size: 180%;
+    margin-left: 10px;
+    font-size: 150%;
   }
   .social .go {
-    margin-left: 25px;
-    font-size: 180%;
+    margin-left: 10px;
+    font-size: 150%;
   }
   
   .social i {

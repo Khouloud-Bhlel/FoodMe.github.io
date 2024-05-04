@@ -1,14 +1,14 @@
 <template>
-  <div class="footer" :style="{ backgroundColor: backgroundColorContact }">
-      <div class="news-letter">
-          <h3 :style="{ color: ColorContactitel }">Receive event notifications</h3>
-          <form onsubmit="event.preventDefault();">
-              <input type="email" name="useremailreceiveinfo" placeholder="enter your email"
-                  id="useremailreceiveinfo">
-              <input type="submit" value="subscribe">
-          </form>
-      </div>
-
+<div class="footer" :style="{ backgroundColor: backgroundColorContact }">
+  <div v-if="successMessage" class="success-alert">{{ successMessage }}</div> 
+  <div class="news-letter">
+      <h3 :style="{ color: ColorContactitel }">Receive event notifications</h3>
+      <form @submit.prevent="subscribeToNewsletter">
+        <!-- Bind email input field to the 'email' data property -->
+        <input type="email" v-model="email" :placeholder="user ? user.email : 'Enter your email'" id="useremailreceiveinfo">
+        <input type="submit" value="subscribe">
+      </form>
+    </div>
       <div class="box-container">
 
           <div class="box">
@@ -72,18 +72,23 @@
 
   </div>
 </template>
-
 <script>
 import { mapState } from 'vuex';
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'ComponentFooter',
-
+  data() {
+    return {
+      email: '', 
+      successMessage: ''
+    };
+  },
   computed: {
-      ...mapState(['user']),
-      ...mapGetters(['getFormData']),
-      aboutTitle() {
+    ...mapState(['user']),
+    ...mapGetters(['getFormData']),
+    ...mapGetters(['isAuthenticated']),
+    aboutTitle() {
       return this.getFormData ? this.getFormData.aboutTitle : '';
     },
     menuTitle() {
@@ -95,9 +100,6 @@ export default {
     becomeFranchiseeTitle() {
       return this.getFormData ? this.getFormData.becomeFranchiseeTitle : '';
     },
-
-
-
     FooterContactTitre() {
       return this.getFormData ? this.getFormData.FooterContactTitre : '';
     },
@@ -106,9 +108,6 @@ export default {
     },
     FooterContactCall() {
       return this.getFormData ? this.getFormData.FooterContactCall : '';
-    },
-    FooterContactTitre() {
-      return this.getFormData ? this.getFormData.FooterContactTitre : '';
     },
     FooterContactP() {
       return this.getFormData ? this.getFormData.FooterContactP : '';
@@ -124,22 +123,45 @@ export default {
     },
     ColorContactitel() {
       return this.getFormData ? this.getFormData.ColorContactitel : '';
-    }
+    },
   },
   created() {
+    // Set the email value to the user's email if authenticated
+    this.email = this.user ? this.user.email : '';
     this.$store.dispatch('fetchData')
       .catch(error => {
         console.error('Error dispatching fetchData:', error);
       });
   },
   methods: {
-      scrollToTop() {
-          window.scrollTo(0, 0);
+    scrollToTop() {
+      window.scrollTo(0, 0);
+    },
+    async subscribeToNewsletter() {
+      try {
+        // Check if the user is authenticated
+        if (this.isAuthenticated) {
+          // Dispatch the subscribeUser action from Vuex store
+          await this.$store.dispatch('subscribeUser');
+          // Optionally, you can show a success message to the user
+          this.successMessage = 'You have subscribed successfully!';
+          setTimeout(() => {
+            // Clear success message after 3 seconds
+            this.successMessage = '';
+          }, 3000);
+        } else {
+          // If the user is not authenticated, redirect to the login page
+          this.$router.push('/login');
+        }
+      } catch (error) {
+        console.error('Error subscribing to newsletter:', error);
+        // Handle any errors that occur during the subscription process
+        alert('An error occurred. Please try again later.');
       }
+    },
   }
 }
 </script>
-
 <style scoped>
 /* footer */
 .footer {
@@ -250,7 +272,19 @@ export default {
 .footer .bottom .share a:hover {
   background: #2951a2;
 }
-
+.success-alert {
+  position: absolute;
+  font-size:20px;
+  top: 0; /* Adjust as needed */
+  left: 0; /* Adjust as needed */
+  width: 100%; /* Adjust as needed */
+  background-color: rgba(2, 133, 0, 0.8); /* Semi-transparent white */
+  color: #ccc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  backdrop-filter: blur(5px); /* Apply blur effect to the background */
+  -webkit-backdrop-filter: blur(5px); /* For Safari */
+}
 @media (max-width: 576px) {
   .footer .box-container {
 

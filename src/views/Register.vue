@@ -35,7 +35,7 @@
       <button type="submit">Signup</button>
       <div class="social">
         <div class="go"><i class="fab fa-google"></i> Google</div>
-        <div class="fb"><i class="fab fa-facebook"></i> Facebook</div>
+        <div class="fb"><i class="fab fa-facebook-f faFacebook"></i> Facebook</div>
       </div>
     </form>
     <p v-if="errorMessage">{{ errorMessage }}</p>
@@ -46,6 +46,7 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import router from '../router';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 export default {
   setup() {
@@ -100,6 +101,7 @@ export default {
   
   
   <style scoped>
+    @import "../assets/css/style.css";
   *,
   *:before,
   *:after {
@@ -202,7 +204,7 @@ export default {
 }
   
   input:focus {
-    border-color: #23a2f6; /* Change border color on focus */
+    border-color: #23a2f6; 
   }
   
   ::placeholder {
@@ -224,7 +226,7 @@ export default {
   .social {
     margin-top: 30px;
     display: flex;
-    justify-content: center; /* Center the items horizontally */
+    justify-content: center; 
 
   }
   
@@ -245,11 +247,18 @@ export default {
   }
   
   .social .fb {
-    margin-left: 25px;
+    margin-left: 10px;
+    font-size: 150%;
   }
+  .social .go {
+    margin-left: 10px;
+    font-size: 150%;
+  }
+  
   
   .social i {
     margin-right: 4px;
+    font-size: 180%;
   }
   </style>
   

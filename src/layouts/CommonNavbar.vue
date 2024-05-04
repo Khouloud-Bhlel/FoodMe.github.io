@@ -2,21 +2,19 @@
   <div class="header" :style="{ backgroundColor: backgroundColorNav }">
       <router-link @click="scrollToTop()" to="/"class="logo"><img :src="logoUrl" alt="" class="small-logo">
       </router-link>
-      <nav class="navbar">
-          <router-link @click="scrollToTop()" :style="{ color: colorNav }" to="/aboutus" >{{ aboutTitle }}</router-link>
-          <router-link @click="scrollToTop()":style="{ color: colorNav }"  to="/menu">{{ menuTitle }}</router-link>
-          <router-link @click="scrollToTop()" :style="{ color: colorNav }" to="/gallery">{{ galleryTitle }}</router-link>
-          <router-link @click="scrollToTop()":style="{ color: colorNav }"  to="/ourfranchisees">{{ ourFranchisesTitle }}</router-link>
-          <router-link @click="scrollToTop()" :style="{ color: colorNav }" to="/becomeafranchisee">{{ becomeFranchiseeTitle }}</router-link>
-          <router-link @click="scrollToTop()" :style="{ color: colorNav }" to="/contact">{{ contactTitle }}</router-link>
-      
+      <nav class="navbar" @click="hideNav">
+          <router-link class="item" @click="scrollToTop()" :style="{ color: colorNav }" to="/aboutus" >{{ aboutTitle }}</router-link>
+          <router-link class="item" @click="scrollToTop()":style="{ color: colorNav }"  to="/menu">{{ menuTitle }}</router-link>
+          <router-link class="item" @click="scrollToTop()" :style="{ color: colorNav }" to="/gallery">{{ galleryTitle }}</router-link>
+          <router-link class="item" @click="scrollToTop()":style="{ color: colorNav }"  to="/reservation">{{ reservationTitle }}</router-link>
+          <router-link class="item" @click="scrollToTop()" :style="{ color: colorNav }" to="/becomeaLivreur">{{ becomeaLivreurTitle }}</router-link>
+          <router-link class="item" @click="scrollToTop()" :style="{ color: colorNav }" to="/contact">{{ contactTitle }}</router-link>
         </nav>
 
       <div class="icons">
           <div id="menu-btn" class="fas fa-bars menu-btn" @click="showNav"></div>
           <router-link @click="scrollToTop()" to="/cart">
             <div class="fas fa-shopping-cart cart">
-              <!-- <font-awesome-icon icon="cart-arrow-down" class="black-icon" /> -->
             </div>
           </router-link>
           <div v-if="!$store.getters.isAuthenticated" class="fas faUser fa-user account"  @click="showLog">
@@ -50,10 +48,9 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
-import { mapState, mapMutations } from "vuex";
+import { mapState } from "vuex";
 import { mapGetters } from 'vuex';
-import store from '../store'; // Assuming the store is located in the '@/store' directory
+import store from '../store'; 
 import router from '../router';
 
 export default {
@@ -66,19 +63,19 @@ export default {
       return this.getFormData ? this.getFormData.logoUrl : '';
     },
     aboutTitle() {
-      return this.getFormData ? this.getFormData.aboutTitle : '';
+      return this.getFormData ? this.getFormData.aboutTitle : 'about';
     },
     menuTitle() {
-      return this.getFormData ? this.getFormData.menuTitle : '';
+      return this.getFormData ? this.getFormData.menuTitle : 'menu';
     },
     galleryTitle() {
-      return this.getFormData ? this.getFormData.galleryTitle : '';
+      return this.getFormData ? this.getFormData.galleryTitle : 'gallery';
     },
-    ourFranchisesTitle() {
-      return this.getFormData ? this.getFormData.ourFranchisesTitle : '';
+    reservationTitle() {
+      return this.getFormData ? this.getFormData.reservationTitle : 'reservation';
     },
-    becomeFranchiseeTitle() {
-      return this.getFormData ? this.getFormData.becomeFranchiseeTitle : '';
+    becomeaLivreurTitle() {
+      return this.getFormData ? this.getFormData.becomeaLivreurTitle : 'become a Livreur';
     },
     contactTitle() {
       return this.getFormData ? this.getFormData.contactTitle : 'contact';
@@ -90,7 +87,7 @@ export default {
       return this.getFormData ? this.getFormData.ColorNav : '';
     },
     user() {
-      return this.$store.state.user; // Access user state from Vuex store
+      return this.$store.state.user; 
     },
   },
   created() {
@@ -113,6 +110,10 @@ export default {
           let navbar = document.querySelector('.header .navbar');
           navbar.classList.toggle('active');
       },
+      hideNav: function () {
+    let navbar = document.querySelector('.header .navbar');
+    navbar.classList.remove('active');
+  },
       showLog: function () {
           let mq = window.matchMedia("(max-width: 768px)");
           if (mq.matches) {
@@ -128,11 +129,10 @@ export default {
       },
       handleLogout() {
       try {
-        // Call the logout action from your Vuex store
         store.dispatch('logout');
         this.$store.commit('clearUser');
         router.push('/');
-        console.log('Logout button clicked'); // Add this line for debugging
+        console.log('Logout button clicked'); 
     window.location.reload();
       } catch (error) {
         console.error('Error logging out:', error);
@@ -266,33 +266,55 @@ export default {
       display: block;
   }
 }
-
 @media (max-width: 768px) {
-  .header .navbar {
-      position: absolute;
-      top: 99%;
-      left: 0;
-      right: 0;
-      background: #fff;
-      border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
-      border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
-      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-  }
-
-  .header .navbar.active {
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-
-  .header .navbar a {
-      font-size: 2rem;
-      margin: 2rem;
-      display: block;
+  .header .icons {
+    display: flex;
+    align-items: center;
   }
 
   #menu-btn {
-      display: inline-block;
+    display: block;
+    margin-left: 10px;
   }
 
+  .header .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 50%; 
+    background: #fff;
+    border-right: 0.1rem solid rgba(0, 0, 0, 0.2); 
+    transform: translateX(-100%); 
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    align-items: center;
+  }
+  .header .navbar.active {
+    transform: translateX(0); 
+  }
+  .header .navbar .item {
+    flex: 1 0 100%; 
+    margin:0; 
+    text-align: center; 
+  }
+
+  .header .navbar a {
+    margin: 0;
+    padding: 1rem; 
+    display: block;
+    color: #f38609;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-right: none; 
+    transition: background-color 0.3s ease; 
+  }
+
+  .header .navbar a:hover {
+    background-color: #f7f7f7; 
+  }
 }
 
 @media (max-width: 576px) {

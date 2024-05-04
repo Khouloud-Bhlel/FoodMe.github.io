@@ -26,6 +26,32 @@ export default {
         }
         },
   actions: {
+    async subscribeUser({ commit, state }) {
+      try {
+        if (!state.user || !state.authToken) {
+          console.error('User not authenticated');
+          return;
+        }
+
+        const userId = state.user._id;
+
+        const response = await axios.put(`http://localhost:9000/api/users/${userId}`, { subscribe: true }, {
+          headers: {
+            'Authorization': `Bearer ${state.authToken}`,
+          },
+        });
+
+        if (response.data && response.data.user) {
+          commit('setUser', response.data.user);
+        } else {
+          console.error('Subscription update failed:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Error updating subscription:', error);
+        throw error;
+      }
+    },
+    
     async authenticateUser({ commit }) {
       try {
         const response = await axios.get('http://localhost:9000/api/users', {
@@ -43,6 +69,19 @@ export default {
             console.error('Authentication token not available in user data', user);
             commit('clearUser');
           }
+          // If email/password authentication fails, attempt to fetch user data using Google authentication
+        const googleResponse = await axios.get('http://localhost:9000/api/auth/google/callback', {
+          withCredentials: true,
+        });
+        // If Google authentication is successful, set user and auth token
+        if (googleResponse.data && googleResponse.data.user && googleResponse.data.user.authToken) {
+          commit('setAuthToken', googleResponse.data.user.authToken);
+          commit('setUser', googleResponse.data.user);
+          return;
+        }else {
+          console.error('Authentication token not available in user data', user);
+          commit('clearUser');
+        }
         } else {
           console.error('User data not available in the response', response.data);
           commit('clearUser');
@@ -52,10 +91,7 @@ export default {
         commit('clearUser');
       }
     },
-    
-    
-    
-  
+
     async user({ commit, state }) {
       try {
         if (!state.user || !state.user._id) {
