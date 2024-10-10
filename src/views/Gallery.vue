@@ -1,7 +1,7 @@
 <template>
     <div class="bg-100">
         <div class="heading">
-          <span :style="{ color: Colorabouttitre }">gallerys</span>
+          <span :style="{ color: Colorabouttitre }">galleries</span>
       </div>
       <div class="row gallery">
         <div class="wrapper">

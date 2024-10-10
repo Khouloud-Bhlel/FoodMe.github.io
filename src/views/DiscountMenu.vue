@@ -16,7 +16,7 @@
 </p>
 
               <button class="add-to-cart-button" @click="addToCart(product); toggleSelected(product)">
-                Ajouter
+                Add
                 <div class="fas fa-shopping-cart cart"></div>
 </button>
 
@@ -29,7 +29,7 @@
         <router-link
           :to="{ path: '/menu' }"
         >
-            Menu
+        Menu
         </router-link>
 
         

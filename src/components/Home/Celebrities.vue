@@ -24,7 +24,7 @@
                                 "{{element.text}}"
                             </b-card-text>
                             <div class="card-author">{{element.name}}</div>
-                            </b-card-body>
+                            
                         </b-col>
                     </b-row>
                 </b-card>

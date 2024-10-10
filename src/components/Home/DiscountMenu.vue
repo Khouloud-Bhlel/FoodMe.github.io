@@ -12,7 +12,7 @@
             <p>{{ product.price }} Dt 
               <b-icon icon="arrow-right" variant="warning"/>
               {{ product.promotion.PricePromo }}Dt</p>
-            <b-button pill variant="warning" @click="addToCart(product)" class="add-to-cart-button">Ajouter</b-button>
+            <b-button pill variant="warning" @click="addToCart(product)" class="add-to-cart-button">Add</b-button>
 
             <div class="promo-circle">{{ product.promotion.reduction }}%</div>
           </div>
@@ -27,7 +27,7 @@
           aria-controls="collapse-4"
           @click="toggleCollapse"
         >
-          ALL Menu
+        ALL Menu
         </b-button>
         <b-collapse id="collapse-4" v-model="visible" class="mt-2">
           <b-card>

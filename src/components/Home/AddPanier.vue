@@ -6,11 +6,11 @@
           <table class="table">
             <tbody>
               <tr>
-                <th>Image</th>
-                <th>Prix Promo</th>
-                <th>Prix</th>
-                <th>Nom</th>
-                <th>Quantité</th>
+                <th>Picture</th>
+                <th>Promo Price</th>
+                <th>Price</th>
+                <th>Name</th>
+                <th>Quantity</th>
               </tr>
               <tr>
                 <td><img :src="product.image" alt="Product Image" class="img-fluid"></td>
@@ -22,7 +22,7 @@
               
                 </td>
               </tr>
-              <b-button @click="addToCart" variant="success">Ajouter au Cart</b-button>
+              <b-button @click="addToCart" variant="success">Add to Cart</b-button>
               <!-- <b-button @click="addToCommande" variant="success">Passer Commande </b-button> -->
 
             </tbody>
@@ -31,7 +31,7 @@
       </div>
     </div>
     <template #modal-footer="{ hide }">
-      <b-button @click="hide">Fermer</b-button>
+      <b-button @click="hide">Close</b-button>
     </template>
   </b-modal>
 </template>

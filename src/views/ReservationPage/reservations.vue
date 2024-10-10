@@ -7,27 +7,27 @@
       </div>
       <form @submit.prevent="submitReservation">
         <div class="form-group">
-          <label for="nom">Nom:</label>
+          <label for="nom">Name:</label>
           <input type="text" id="nom" v-model="reservation.nom" required>
         </div>
         <div class="form-group">
-          <label for="prenom">Prénom:</label>
+          <label for="prenom">First name:</label>
           <input type="text" id="prenom" v-model="reservation.prenom" required>
         </div>
         <div class="form-group">
-          <label for="tel">Téléphone:</label>
+          <label for="tel">Phone:</label>
           <input type="tel" id="tel" v-model="reservation.tel" required>
         </div>
         <div class="form-group">
-          <label for="dateReservation">Date de réservation:</label>
+          <label for="dateReservation">Booking date:</label>
           <input type="date" id="dateReservation" v-model="reservation.dateReservation" required>
         </div>
         <div class="form-group">
-          <label for="time">Heure:</label>
+          <label for="time">Hour:</label>
           <input type="time" id="time" v-model="reservation.time" required>
         </div>
         <div class="form-group">
-          <label for="Nombrepersonne">Nombre de personnes:</label>
+          <label for="Nombrepersonne">Number of people:</label>
           <input type="number" id="Nombrepersonne" v-model="reservation.Nombrepersonne" required>
         </div>
         <div class="form-group">

@@ -14,13 +14,13 @@
      :responsive="{0:{items:1},650:{items:2},1000:{items:4}}">
         <div class="text-left partners-content-bg">
           <div class="partners-content-card">
-            <h3 class="h3-blue">MTL Feeder ( Head office ) </h3>
+            <h3 class="h3-blue">MTL Feeder (Head office) </h3>
               <b-row class="partners-row">
                 <b-col col lg="1" md="1" sm="1" cols="1">
                       <font-awesome-icon icon="map-marker-alt" />
                 </b-col>
                 <b-col col lg="11" md="11" sm="11" cols="11" class="partners-adresse-section">
-                    <span> Rue d'Athènes. ZP Rades <br>2040  – Tunisia</span> 
+                    <span> Athens Street. ZP Rades <br>2040  – Tunisia</span> 
                 </b-col>
 
                 <b-col col lg="1" md="1" sm="1" cols="1">
@@ -50,8 +50,8 @@
                     <font-awesome-icon icon="map-marker-alt" />
               </b-col>
               <b-col col lg="11" md="11" sm="11" cols="11"  class="partners-adresse-section-lg">
-                   <span> Imm Kyranis, App 1 – 4 eme etage Rue Ali Bach Hamba.
-                          3000 Sfax – Tunisia
+                   <span> Imm Kyranis, App 1 – 4th floor Rue Ali Bach Hamba.
+                    3000 Sfax – Tunisia
                     </span> 
               </b-col>
 

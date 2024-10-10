@@ -15,7 +15,7 @@
   <i @click="decreaseQuantity(product)" class="fas fa-minus moins"></i>
 </div>
 
-          <p class="cart-price">Prix Unitaire: {{ product.PrixUnit }} DT</p>
+          <p class="cart-price">Unit Price: {{ product.PrixUnit }} DT</p>
           <button @click="removeFromCart(index)" class="remove">
           <div class="fas fa-trash cart" style="font-size: 20px; color: red;"></div>
           </button>
@@ -33,7 +33,7 @@
   </button>
 
 <router-link :to="{ path: '/menu' }" class="btn-annuler">
-  <span>Annuler</span>
+  <span>Cancel</span>
 </router-link>
 </div>
 

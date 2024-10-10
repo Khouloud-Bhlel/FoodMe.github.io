@@ -35,24 +35,24 @@
           <div class="col-md-6">
             <div>
               
-              <p><strong>Ingrédients:</strong> {{ product.ingredient.join(', ') }}</p>
+              <p><strong>Ingredients:</strong> {{ product.ingredient.join(', ') }}</p>
               <p v-if="product.promotion">
-                <strong>Date de début de la promotion:</strong> {{ product.promotion.startDate }}
+                <strong>Promotion start date:</strong> {{ product.promotion.startDate }}
               </p>
               <p v-if="product.promotion">
-                <strong>Date de fin de la promotion:</strong> {{ product.promotion.endDate }}
+                <strong>Promotion end date:</strong> {{ product.promotion.endDate }}
               </p>
               
               <p v-if="product.promotion">
-                <strong>Prix promotionnel:</strong> {{ product.promotion.PricePromo }}
+                <strong>Promotional price:</strong> {{ product.promotion.PricePromo }}
               </p>
-              <p><strong>Favoris:</strong> {{ product.favoris }}</p>
+              <p><strong>Favorites:</strong> {{ product.favoris }}</p>
             </div>
           </div>
         </div>
       </template>
       <template #modal-footer="{ hide }">
-        <b-button @click="hide">Fermer</b-button>
+        <b-button @click="hide">Close</b-button>
       </template>
     </b-modal>
   </template>

@@ -9,11 +9,11 @@
         <div class="row">
           
           <div class="col-2">
-            <h1>Le meilleure restauration<br>Un nouveau style !</h1>
+            <h1>The best catering<br>A new style!</h1>
 
-            <p>Découvrez une expérience culinaire inoubliable avec notre service de réservation en ligne.
-              <br> Réservez dès maintenant pour savourer les délices exquis de notre restaurant dans un cadre chaleureux et accueillant </p>
-              <router-link to="/reservation" class="btn-reservation">Réserver une table &#8594;</router-link>
+            <p>Discover an unforgettable culinary experience with our online reservation service.
+              <br> Book now to savor the exquisite delights of our restaurant in a warm and welcoming setting</p>
+              <router-link to="/reservation" class="btn-reservation">Reserve a table &#8594;</router-link>
               <router-link to="/menu" class="btn-menu">Voir plus</router-link>
           </div>
           

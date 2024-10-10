@@ -4,27 +4,27 @@
     <div v-if="successMessage" class="success-alert">{{ successMessage }}</div>
     
     <div class="headingl">
-      <span>Devenez livreur</span>
+      <span>Become a delivery person</span>
     </div>
     <form @submit.prevent="submitLivreur">
       <div class="form-group">
-        <label for="nom">Nom:</label>
+        <label for="nom">Name:</label>
         <input type="text" id="nom" v-model="livreur.nom" required style="margin-left: 100px; margin-right: 80px;">
       </div>
       <div class="form-group">
-        <label for="prenom">Prénom:</label>
+        <label for="prenom">First name:</label>
         <input type="text" id="prenom" v-model="livreur.prenom" required style="margin-left: 70px; margin-right: 80px;">
       </div>
       <div class="form-group">
-        <label for="ville">Ville:</label>
+        <label for="ville">City:</label>
         <input type="text" id="ville" v-model="livreur.ville" required style="margin-left: 80px; margin-right: 80px;">
       </div>
       <div class="form-group">
-        <label for="codePostal">Code Postal:</label>
+        <label for="codePostal">Postal Code:</label>
         <input type="text" id="codePostal" v-model="livreur.codePostal" required style="margin-left: 15px; margin-right: 80px;">
       </div>
       <div class="form-group">
-        <label for="rue">Rue:</label>
+        <label for="rue">Street:</label>
         <input type="text" id="rue" v-model="livreur.rue" required style="margin-left: 105px; margin-right: 80px;">
       </div>
       <div class="form-group">
@@ -32,11 +32,11 @@
         <input type="email" id="email" v-model="livreur.email" required style="margin-left: 80px; margin-right: 80px;">
       </div>
       <div class="form-group">
-        <label for="tel">Téléphone:</label>
+        <label for="tel">Phone:</label>
         <input type="tel" id="tel" v-model="livreur.tel" required style="margin-left: 40px; margin-right: 80px;">
       </div>
       <div class="form-group">
-  <label for="typedetransport">Type de transport:</label>
+  <label for="typedetransport">Transportation type:</label>
   <input type="text" id="typedetransport" v-model="livreur.typedetransport" required style="margin-left: 40px; margin-right: 80px;">
 </div>
 <div class="form-group">
@@ -46,7 +46,7 @@
 
 
       <div class="form-group">
-        <button type="submit">Ajouter</button>
+        <button type="submit">Add</button>
       </div>
     </form>
   </div>

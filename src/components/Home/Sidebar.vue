@@ -5,8 +5,8 @@
     </b-button>
     <b-sidebar id="sidebar-right" title="Sidebar" right shadow>
       <div class="px-3 py-2">
-        <h3>Produits Favoris</h3>
-        <div v-if="favorisProducts.length === 0">Aucun produit favori</div>
+        <h3>Favorite Products</h3>
+        <div v-if="favorisProducts.length === 0">No favorite products</div>
         <b-table striped hover :items="favorisProducts" :fields="fields">
           <template v-slot:cell(image)="row">
             <img :src="row.value" alt="Product Image" class="product-image">

@@ -2,10 +2,10 @@
   <div class="px-3 py-2">
     <div class="map-container" ref="map"></div>
 
-    <p>Sélectionnez votre adresse :</p>
+    <p>Select your address:</p>
     <input type="text" v-model="adresse" placeholder="Adresse de livraison">
-    <button @click="confirmOrder">Confirmer</button>
-    <button @click="cancelOrder">Annuler</button>
+    <button @click="confirmOrder">Confirm</button>
+    <button @click="cancelOrder">Cancel</button>
   </div>
 </template>
 

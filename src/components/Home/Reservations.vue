@@ -3,21 +3,21 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8"> <!-- Utilisation de col-md-8 pour limiter la largeur du formulaire -->
-          <h2 class="h2-blue text-center text-success"> Réservation</h2>
+          <h2 class="h2-blue text-center text-success"> Reservation</h2>
           <div class="reservations-content">
             <div class="title-line mb-50"></div>
             <form @submit.prevent="submitReservation">
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="nom"><b-icon icon="person"></b-icon> Nom:</label>
+                  <label for="nom"><b-icon icon="person"></b-icon> Name:</label>
                   <input type="text" id="nom" v-model="nom" required />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="prenom"><b-icon icon="person-circle"></b-icon> Prénom:</label>
+                  <label for="prenom"><b-icon icon="person-circle"></b-icon> First name:</label>
                   <input type="text" id="prenom" v-model="prenom" required />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="tel"><b-icon icon="telephone"></b-icon> Téléphone:</label>
+                  <label for="tel"><b-icon icon="telephone"></b-icon> Phone:</label>
                   <input type="tel" id="tel" v-model="tel" required />
                 </div>
                 <div class="form-group col-md-6">
@@ -25,15 +25,15 @@
                   <input type="date" id="date" v-model="dateReservation" required />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="time"><b-icon icon="clock"></b-icon> Heure:</label>
+                  <label for="time"><b-icon icon="clock"></b-icon> Hour:</label>
                   <input type="time" id="time" v-model="time" required />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="numberOfPeople"><b-icon icon="people"></b-icon> Nombre de Personnes:</label>
+                  <label for="numberOfPeople"><b-icon icon="people"></b-icon>Number of People:</label>
                   <input type="number" id="numberOfPeople" v-model="numberOfPeople" required />
                 </div>
               </div>
-              <b-button type="submit" variant="success" @click="makeToast('success')" class="mb-2">Ajouter Réservation</b-button>
+              <b-button type="submit" variant="success" @click="makeToast('success')" class="mb-2">Add Reservation</b-button>
             </form>
           </div>
         </div>

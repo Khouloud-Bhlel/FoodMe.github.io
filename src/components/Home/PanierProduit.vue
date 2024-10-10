@@ -5,15 +5,15 @@
         <ul v-for="(cartItem, cartId) in cart" :key="cartId">
           <li v-for="(product, productIndex) in cartItem.Products" :key="productIndex">
             <p>{{ product.name }} </p>
-               <p>Quantité: {{ product.quantiteCommande }} </p>
-               <p> Prix unitaire: {{ product.PrixUnit }}</p>
+               <p>Quantity: {{ product.quantiteCommande }} </p>
+               <p> Unit price: {{ product.PrixUnit }}</p>
                <p> {{ product.image }}</p>
           </li>
           <p>Total: {{ cartItem.Total }}</p>
         </ul>
       </template>
       <template v-else>
-        <p>Aucun panier trouvé.</p>
+        <p>No basket found.</p>
       </template>
     </b-modal>
   </div>
